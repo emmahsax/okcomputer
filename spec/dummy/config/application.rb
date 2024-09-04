@@ -10,7 +10,7 @@ module Dummy
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
     config.active_support.escape_html_entities_in_json = true
-    config.assets.enabled = false if config.respond_to? :assets
+    # config.assets.enabled = false
     config.secret_token = 'paranoidandroidsubterraneanhomesickalien'
     config.secret_key_base = 'fitterhappiermoreproductive'
     config.session_store :cookie_store, key: '_dummy_session'

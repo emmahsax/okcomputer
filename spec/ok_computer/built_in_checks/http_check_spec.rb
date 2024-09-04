@@ -97,10 +97,10 @@ module OkComputer
         end
 
         it "sets the Authorization header" do
-          expect(subject.url).to receive(:read).with({
-            read_timeout: 5,
-            http_basic_authentication: ['user', 'pass']
-          })
+          expect(subject.url).to receive(:read).with(
+            { read_timeout: 5,
+              http_basic_authentication: ['user', 'pass'] }
+          )
 
           subject.perform_request
         end

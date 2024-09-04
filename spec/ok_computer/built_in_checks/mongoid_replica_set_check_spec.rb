@@ -83,7 +83,11 @@ module OkComputer
         end
 
         it {is_expected.not_to be_successful_check }
-        it {is_expected.to have_message "Error: 'undefined method `cluster' for nil:NilClass'" }
+        if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3")
+          it {is_expected.to have_message "Error: 'undefined method `cluster' for nil'" }
+        else
+          it {is_expected.to have_message "Error: 'undefined method `cluster' for nil:NilClass'" }
+        end
       end
     end
 

@@ -93,7 +93,7 @@ module OkComputer
 
         it "checks Delayed::Job's count of pending jobs within the given priority" do
           expect(Delayed::Job).to receive(:lte).with({ priority: priority }).and_return(Delayed::Job)
-          expect(Delayed::Job).to receive(:where).with({ locked_at: nil, last_error: nil }).and_return(Delayed::Job)
+          expect(Delayed::Job).to receive(:where).with({ :locked_at => nil, :last_error => nil }).and_return(Delayed::Job)
           expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
           expect(subject.size).to eq 456
         end
@@ -104,7 +104,7 @@ module OkComputer
 
         it "checks Delayed::Job's count of pending jobs within the given priority" do
           expect(Delayed::Job).to receive(:where).with("priority <= ?", priority).and_return(Delayed::Job)
-          expect(Delayed::Job).to receive(:where).with({ locked_at: nil, last_error: nil }).and_return(Delayed::Job)
+          expect(Delayed::Job).to receive(:where).with({ :locked_at => nil, :last_error => nil }).and_return(Delayed::Job)
           expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
           expect(subject.size).to eq 456
         end
@@ -120,7 +120,7 @@ module OkComputer
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
             expect(Delayed::Job).to receive(:gte).with({ priority: priority }).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ locked_at: nil, last_error: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :locked_at => nil, :last_error => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
@@ -131,7 +131,7 @@ module OkComputer
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
             expect(Delayed::Job).to receive(:where).with("priority >= ?", priority).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ locked_at: nil, last_error: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :locked_at => nil, :last_error => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
@@ -148,7 +148,7 @@ module OkComputer
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
             expect(Delayed::Job).to receive(:lte).with({ priority: priority }).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ last_error: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :last_error => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
@@ -159,7 +159,7 @@ module OkComputer
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
             expect(Delayed::Job).to receive(:where).with("priority <= ?", priority).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ last_error: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :last_error => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
@@ -175,8 +175,8 @@ module OkComputer
           end
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
-            expect(Delayed::Job).to receive(:lte).with({ priority: priority }).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ locked_at: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:lte).with(priority: priority).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :locked_at => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
@@ -187,7 +187,7 @@ module OkComputer
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
             expect(Delayed::Job).to receive(:where).with("priority <= ?", priority).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ locked_at: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :locked_at => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
@@ -204,7 +204,7 @@ module OkComputer
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
             expect(Delayed::Job).to receive(:lte).with({ priority: priority }).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ queue: 'default', last_error: nil, locked_at: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :queue => 'default', :last_error => nil, :locked_at => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
@@ -215,7 +215,7 @@ module OkComputer
 
           it "checks Delayed::Job's count of pending jobs within the given priority" do
             expect(Delayed::Job).to receive(:where).with("priority <= ?", priority).and_return(Delayed::Job)
-            expect(Delayed::Job).to receive(:where).with({ queue: 'default', last_error: nil, locked_at: nil }).and_return(Delayed::Job)
+            expect(Delayed::Job).to receive(:where).with({ :queue => 'default', :last_error => nil, :locked_at => nil }).and_return(Delayed::Job)
             expect(Delayed::Job).to receive(:count).with(no_args()).and_return(456)
             expect(subject.size).to eq 456
           end
