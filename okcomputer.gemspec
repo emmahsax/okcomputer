@@ -1,17 +1,41 @@
-source "https://rubygems.org"
+$:.push File.expand_path("../lib", __FILE__)
 
-RAILS_VERSION = ENV.fetch("RAILS_VERSION", "7.0")
+# Maintain your gem's version:
+require "ok_computer/version"
 
-gem "rails", "~> #{RAILS_VERSION}"
+authors = {
+  "Patrick Byrne" => "code@patrickbyrne.net",
+  "Andy Fleener"  => "anfleene@gmail.com",
+  "Chris Arcand"  => "chris@chrisarcand.com"
+}
 
-if RAILS_VERSION.start_with?("7")
-  gem "sqlite3", "~> 1.6"
-else
-  gem "sqlite3", "~> 1.3.6"
+# Describe your gem and declare its dependencies:
+Gem::Specification.new do |s|
+  s.name        = "okcomputer"
+  s.version     = OkComputer::VERSION
+  s.authors     = authors.keys
+  s.email       = authors.values
+  s.license     = "MIT"
+  s.homepage    = "https://github.com/sportngin/okcomputer"
+  s.summary     = "A simple, extensible health-check monitor"
+  s.description = %Q(
+    Inspired by the simplicity of Fitter Happier, but frustrated by its lack of
+    flexibility, we built OK Computer. Create and register your own custom
+    health checks, or choose from the built-in library of checks to ensure your
+    app is working as intended.
+  )
+
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
+  s.test_files = Dir["test/**/*"]
+
+  s.add_development_dependency "sqlite3", "~> 1.3.6"
+
+  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.7")
+    s.add_development_dependency "rspec-rails", "~> 7.0"
+  else
+    s.add_development_dependency "rspec-rails", "~> 4.0"
+  end
+
+  s.add_development_dependency "coveralls"
+  s.add_development_dependency "sequel"
 end
-
-gem "test-unit", "~> 3.0" if RUBY_VERSION >= "2.2" && RAILS_VERSION == "3.2"
-
-gem 'sprockets', '~>3.0'
-
-gemspec
