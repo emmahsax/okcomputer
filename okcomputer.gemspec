@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.authors     = authors.keys
   s.email       = authors.values
   s.license     = "MIT"
-  s.homepage    = "https://github.com/sportngin/okcomputer"
+  s.homepage    = "https://github.com/emmahsax/okcomputer"
   s.summary     = "A simple, extensible health-check monitor"
   s.description = %Q(
     Inspired by the simplicity of Fitter Happier, but frustrated by its lack of
