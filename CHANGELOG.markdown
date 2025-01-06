@@ -1,3 +1,6 @@
+#### Unreleased
+* Update gemspec metadata
+
 #### v1.18.5
 * Add tests for rails 7
   > cbeer: https://github.com/sportngin/okcomputer/pull/174
@@ -15,7 +18,7 @@
 
 #### v1.17.2
 * Add Support for Rails 5.2 Migration Check
-  > 	rmm5t: https://github.com/sportngin/okcomputer/pull/147
+  > rmm5t: https://github.com/sportngin/okcomputer/pull/147
 
 #### v1.17.1
 * Check name in CheckCollection#Register
