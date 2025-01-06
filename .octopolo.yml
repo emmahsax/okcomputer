@@ -1,4 +1,4 @@
-github_repo: sportngin/okcomputer
+github_repo: emmahsax/okcomputer
 semantic_versioning: true
 branches_to_keep:
-- master
+- main

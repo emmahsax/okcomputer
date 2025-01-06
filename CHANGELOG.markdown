@@ -1,4 +1,5 @@
 #### Unreleased
+* Change default branch from `master` to `main`
 * Update gemspec metadata
 
 #### v1.18.5
