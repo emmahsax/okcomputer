@@ -7,6 +7,8 @@ authors = {
   "Patrick Byrne" => "code@patrickbyrne.net",
   "Andy Fleener"  => "anfleene@gmail.com",
   "Chris Arcand"  => "chris@chrisarcand.com",
+  "Emma Sax"      => "sax.emma.h@gmail.com",
+  "Ryan McGeary"  => "ryan@mcgeary.org",
 }
 
 # Describe your gem and declare its dependencies:
