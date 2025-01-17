@@ -25,7 +25,7 @@ VERSION_WITH_V="v$VERSION_WITHOUT_V"
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 if [ "$current_branch" != "main" ]; then
   read -p "It seems you are not on the main branch ($current_branch)... Would you like to continue? [y/N] " branch_proceed
-  proceed=$(echo "$branch_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
+  proceed=$(echo "$branch_proceed" | tr '[:upper:]' '[:lower:]')
   if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
     echo "Exiting"
     exit 0
@@ -56,7 +56,7 @@ if git diff --quiet; then
 else
   git diff
   read -p "Would you like to commit and push these changes? [y/N] " commit_proceed
-  proceed=$(echo "$commit_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
+  proceed=$(echo "$commit_proceed" | tr '[:upper:]' '[:lower:]')
   if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
     echo "Exiting"
     exit 0
@@ -76,7 +76,7 @@ echo "git tag $VERSION_WITH_V && git push --tag"
 
 # Push to RubyGems
 read -p "Would you like to push to RubyGems? [y/N] " rubygems_proceed
-proceed=$(echo "$rubygems_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
+proceed=$(echo "$rubygems_proceed" | tr '[:upper:]' '[:lower:]')
 if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
   echo "Exiting"
   exit 0

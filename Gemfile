@@ -3,7 +3,7 @@ source "https://rubygems.org"
 RAILS_VERSION = ENV.fetch("RAILS_VERSION", "5.0")
 
 if RAILS_VERSION.start_with?("6") || RAILS_VERSION.start_with?("7")
-  gem "sqlite3", "~> 1.7.0"
+  gem "sqlite3", "~> 1.4"
 end
 
 gem "rails", "~> #{RAILS_VERSION}"
