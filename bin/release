@@ -28,6 +28,7 @@ if [ "$current_branch" != "main" ]; then
   proceed=$(echo "$branch_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
   if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
     echo "Exiting"
+    exit 0
   fi
 fi
 
@@ -58,6 +59,7 @@ else
   proceed=$(echo "$commit_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
   if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
     echo "Exiting"
+    exit 0
   else
     ## TODO: swap these back... used for testing
     # git commit -am "Version bump to $VERSION_WITH_V"
@@ -75,7 +77,10 @@ echo "git tag $VERSION_WITH_V && git push --tag"
 # Push to RubyGems
 read -p "Would you like to push to RubyGems? [y/N] " rubygems_proceed
 proceed=$(echo "$rubygems_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
-if [[ "$proceed" == "y" || "$proceed" == "yes" ]]; then
+if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
+  echo "Exiting"
+  exit 0
+else
   gem build *.gemspec
   ## TODO: swap these back... used for testing
   # gem push *.gem
