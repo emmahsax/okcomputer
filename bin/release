@@ -1,0 +1,86 @@
+#!/bin/bash
+
+### Written with assistance from ChatGPT, tested and refined manually afterwards
+
+# Check if version argument is passed
+if [ -z "$1" ]; then
+  echo "Usage: $0 <version> (e.g., 1.2.3 or v1.2.3)"
+  exit 1
+fi
+
+PROJECT_ROOT=$(git rev-parse --show-toplevel)
+
+# Ensure the project root was found
+if [ -z "$PROJECT_ROOT" ]; then
+  echo "Error: Not inside a Git repository"
+  exit 1
+fi
+
+CHANGELOG_FILE="$PROJECT_ROOT/CHANGELOG.markdown"
+VERSION_FILE="$PROJECT_ROOT/lib/ok_computer/version.rb"
+VERSION_WITHOUT_V=${1#v} # Remove 'v' if present
+VERSION_WITH_V="v$VERSION_WITHOUT_V"
+
+# Check if on main branch
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$current_branch" != "main" ]; then
+  read -p "It seems you are not on the main branch ($current_branch)... Would you like to continue? [y/N] " branch_proceed
+  proceed=$(echo "$branch_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
+  if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
+    echo "Exiting"
+  fi
+fi
+
+echo "Proceeding with version release to $VERSION_WITH_V"
+
+# Update CHANGELOG.markdown
+if [ -f "$CHANGELOG_FILE" ]; then
+  sed -i.bak -E "s/^(#+[[:space:]]+)([^v].*)/\\1$VERSION_WITH_V/" $CHANGELOG_FILE
+  rm -f $CHANGELOG_FILE.bak
+else
+  echo "$CHANGELOG_FILE not found"
+fi
+
+# Update lib/ok_computer/version.rb
+if [ -f "$VERSION_FILE" ]; then
+  sed -i.bak -E "s/^([[:space:]]*VERSION[[:space:]]+=[[:space:]]+).*/\\1'$VERSION_WITHOUT_V'/" $VERSION_FILE
+  rm -f $VERSION_FILE.bak
+else
+  echo "$VERSION_FILE not found."
+fi
+
+# Check for changes
+if git diff --quiet; then
+  echo "No changes detected."
+else
+  git diff
+  read -p "Would you like to commit and push these changes? [y/N] " commit_proceed
+  proceed=$(echo "$commit_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
+  if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
+    echo "Exiting"
+  else
+    ## TODO: swap these back... used for testing
+    # git commit -am "Version bump to $VERSION_WITH_V"
+    # git push
+    echo "git commit -am \"Version bump to $VERSION_WITH_V\""
+  fi
+fi
+
+# Tag and push
+## TODO: swap these back... used for testing
+# git tag $VERSION_WITH_V
+# git push --tag
+echo "git tag $VERSION_WITH_V && git push --tag"
+
+# Push to RubyGems
+read -p "Would you like to push to RubyGems? [y/N] " rubygems_proceed
+proceed=$(echo "$rubygems_proceed" | tr '[:upper:]' '[:lower:]') # Normalize input to lowercase
+if [[ "$proceed" == "y" || "$proceed" == "yes" ]]; then
+  gem build *.gemspec
+  ## TODO: swap these back... used for testing
+  # gem push *.gem
+  echo "gem push *.gem"
+  rm -f *.gem
+fi
+
+echo "Release complete... happy coding!"

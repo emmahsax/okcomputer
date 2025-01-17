@@ -1,3 +1,6 @@
+#### Unreleased
+* Added `bin/release` script to make it easier to make new version bumps and releases
+
 #### v1.18.6
 * Change default branch from `master` to `main`
   > emmahsax: https://github.com/emmahsax/okcomputer/pull/7

@@ -1,5 +1,8 @@
-[![Code Climate](https://codeclimate.com/github/sportngin/okcomputer.svg)](https://codeclimate.com/github/sportngin/okcomputer)
-[![Build Status](https://github.com/sportngin/okcomputer/workflows/CI/badge.svg)](https://github.com/sportngin/okcomputer/actions?query=workflow%3ACI)
+[![Gem Version](https://badge.fury.io/rb/okcomputer.svg)](https://badge.fury.io/rb/okcomputer)
+[![Downloads](https://img.shields.io/gem/dt/okcomputer.svg)](https://rubygems.org/gems/okcomputer)
+[![License](https://img.shields.io/github/license/emmahsax/okcomputer.svg)](LICENSE)
+[![Ruby Versions](https://img.shields.io/badge/Ruby-%3E%3D%202.3-brightgreen.svg)](https://www.ruby-lang.org)
+[![Build Status](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml/badge.svg)](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml)
 
 # OK Computer
 
