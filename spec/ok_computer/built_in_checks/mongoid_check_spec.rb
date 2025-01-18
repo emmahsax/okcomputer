@@ -70,7 +70,7 @@ module OkComputer
         it {is_expected.not_to be_successful_check }
 
         expected_message = if RUBY_VERSION.to_f >= 3.3
-          "Error: 'undefined method `database` for module Mongoid'"
+          "Error: 'undefined method `database' for module Mongoid'"
         else
           "Error: 'undefined method `database' for Mongoid:Module'"
         end

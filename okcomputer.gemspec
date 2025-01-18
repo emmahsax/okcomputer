@@ -38,7 +38,6 @@ Gem::Specification.new do |s|
     "source_code_uri"   => s.homepage,
   }
 
-  s.add_development_dependency "coveralls", "~> 0.8"
   s.add_development_dependency "rspec-rails", "~> 7.1"
   s.add_development_dependency "sequel", "~> 5.88"
   s.add_development_dependency "sprockets", "~> 4.2"
