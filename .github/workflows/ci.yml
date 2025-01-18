@@ -49,6 +49,19 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          bundler: ${{ matrix.bundler }}
           ruby-version: ${{ matrix.ruby }}
+      - run: bundle exec rake
+
+  rails-5:
+    runs-on: ubuntu-latest
+    name: Ruby 2.7 and Rails 5.0.0
+    env:
+      RAILS_VERSION: '5.0.0'
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: '2.7'
       - run: bundle exec rake
