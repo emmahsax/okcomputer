@@ -5,11 +5,11 @@ RAILS_VERSION = ENV.fetch("RAILS_VERSION", "7.0")
 rails_version_float = RAILS_VERSION.to_f
 ruby_version_float = RUBY_VERSION.to_f
 
-if rails_version_float <= 7.0
+if rails_version_float < 7.1
   gem "concurrent-ruby", "1.3.4"
 end
 
-if rails_version_float <= 7.0 && ruby_version_float < 3.0
+if rails_version_float < 7.1 && ruby_version_float < 3.0
   gem "mutex_m", "~> 1.3"
 end
 
