@@ -29,5 +29,4 @@ else
   gem "sprockets", "~> 4.2"
 end
 
-
 gemspec
