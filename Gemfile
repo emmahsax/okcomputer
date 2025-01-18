@@ -11,17 +11,23 @@ if rails_version_float < 7.1
 end
 
 gem "drb", "~> 2.0"
-gem "rails", "#{RAILS_VERSION}"
-gem "rspec-rails", "~> 7.1"
+gem "rails", "~> #{RAILS_VERSION}"
 gem "sequel", "~> 5.88"
-gem "sprockets", "~> 4.2"
 
 if rails_version_float < 7.0
-  gem "sqlite3", "~> 1.3.6"
-elsif rails_version_float <= 7.1
-  gem "sqlite3", "~> 1.5"
+  gem "rspec-rails", "~> 4.1"
+  gem "sprockets", "~> 3.0"
+  gem "sqlite3", "~> 1.4"
 else
-  gem "sqlite3", "~> 2.0"
+  if rails_version_float <= 7.1
+    gem "sqlite3", "~> 1.5"
+  else
+    gem "sqlite3", "~> 2.0"
+  end
+
+  gem "rspec-rails", "~> 7.1"
+  gem "sprockets", "~> 4.2"
 end
+
 
 gemspec
