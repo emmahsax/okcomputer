@@ -10,10 +10,7 @@ if rails_version_float < 7.1
   gem "mutex_m", "~> 0.3"
 end
 
-# if ruby_version_float <= 3.0
 gem "drb", "~> 2.0"
-# end
-
 gem "rails", "#{RAILS_VERSION}"
 gem "rspec-rails", "~> 7.1"
 gem "sequel", "~> 5.88"
