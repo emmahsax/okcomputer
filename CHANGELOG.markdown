@@ -1,6 +1,6 @@
 #### Unreleased
-* Added `bin/release` script to make it easier to make new version bumps and releases
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/8
+* Try to fix up rspec tests
+  > emmahsax: https://github.com/emmahsax/okcomputer/pull/9
 
 #### v1.18.6
 * Change default branch from `master` to `main`

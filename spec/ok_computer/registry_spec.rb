@@ -116,4 +116,3 @@ module OkComputer
     end
   end
 end
-
