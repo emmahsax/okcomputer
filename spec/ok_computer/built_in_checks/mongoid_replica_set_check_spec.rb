@@ -84,7 +84,9 @@ module OkComputer
 
         it {is_expected.not_to be_successful_check }
 
-        expected_message = if RUBY_VERSION.to_f >= 3.3
+        expected_message = if RUBY_VERSION.to_f >= 3.4
+          "Error: 'undefined method 'cluster' for nil'"
+        elsif RUBY_VERSION.to_f >= 3.3
           "Error: 'undefined method `cluster' for nil'"
         else
           "Error: 'undefined method `cluster' for nil:NilClass"
