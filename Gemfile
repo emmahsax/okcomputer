@@ -7,9 +7,6 @@ ruby_version_float = RUBY_VERSION.to_f
 
 if rails_version_float < 7.1
   gem "concurrent-ruby", "1.3.4"
-end
-
-if rails_version_float < 7.1 && ruby_version_float < 3.0
   gem "mutex_m", "~> 1.3"
 end
 
