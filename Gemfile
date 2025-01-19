@@ -15,6 +15,9 @@ end
 
 if ruby_version_float > 2.6
   gem "drb", "~> 2.0"
+  gem "loofah", "~> 2.24"
+else
+  gem "loofah", "< 2.20"
 end
 
 gem "rails", "~> #{RAILS_VERSION}"

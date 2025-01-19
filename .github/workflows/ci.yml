@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
-        if: ${{ matrix.rails == '5.0.0' && matrix.ruby <= '2.6' }}
+        if: ${{ matrix.rails <= '5.2.0' && matrix.ruby <= '2.6' }}
       - uses: ruby/setup-ruby@v1
         with:
           bundler: ${{ matrix.bundler }}
