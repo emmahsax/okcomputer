@@ -40,14 +40,12 @@
 #### v1.16.0
 
 * Add a Resque Scheduler check
-
- > agacode: https://github.com/sportngin/okcomputer/pull/134
+  > agacode: https://github.com/sportngin/okcomputer/pull/134
 
 #### v1.15.0
 
 * Add a SequelCheck
-
- > Aryk: https://github.com/sportngin/okcomputer/pull/136
+  > Aryk: https://github.com/sportngin/okcomputer/pull/136
 
 #### v1.14.2
 
@@ -55,12 +53,10 @@
 
 #### v1.14.1
 * Add new check to determine whether the app has pending ActiveRecord migrations.
-
   > pcboy, pbyrne: https://github.com/sportngin/okcomputer/pull/127
 
 #### v1.14.0
 * Add check collections to OkComputer
-
   > newzac, Andy Fleener: Coveralls, Unknown User: https://github.com/sportngin/okcomputer/pull/124
 
 #### v1.13.0
@@ -94,15 +90,15 @@
 
 * Added support for Rails 5!
 * Updated CI build matrix (and consequently, added/dropped official support of Ruby/Rails versions)
-    * Dropped support for Rails 4.0, Ruby 2.0 (EOL)
-    * Added Rails 5.0 and Ruby 2.2, 2.3
-    * Current supported versions are now Rails 5.0, 4.2, 4.1, 3.2, and Ruby 2.1, 2.2, 2.3
+  * Dropped support for Rails 4.0, Ruby 2.0 (EOL)
+  * Added Rails 5.0 and Ruby 2.2, 2.3
+  * Current supported versions are now Rails 5.0, 4.2, 4.1, 3.2, and Ruby 2.1, 2.2, 2.3
 
 #### v1.8.0
 
 * No longer display name of requested check when no matching check is found. This eliminates possibility of XSS vulnerability with maliciously crafted requests.
-    * Before: "No check registered with 'CHECK_NAME'"
-    * After: "No matching check"
+  * Before: "No check registered with 'CHECK_NAME'"
+  * After: "No matching check"
 
 #### v1.7.3
 
@@ -156,8 +152,8 @@
 #### v1.4.0
 
 * Added two new checks:
-    * SolrCheck, which tests connection to a Solr instance
-    * HttpCheck, which tests connection to an arbitrary HTTP endpoint
+  * SolrCheck, which tests connection to a Solr instance
+  * HttpCheck, which tests connection to an arbitrary HTTP endpoint
 * ElasticsearchCheck has been modified to be a child of HttpCheck, with no change in external behavior.
 
 #### v1.3.0
@@ -167,14 +163,14 @@
 #### v1.2.0
 
 * Added two new checks:
-    * ElasticsearchCheck, which tests the health of your Elasticsearch cluster
-    * AppVersionCheck, which reports the version (as a SHA) of your app is running
+  * ElasticsearchCheck, which tests the health of your Elasticsearch cluster
+  * AppVersionCheck, which reports the version (as a SHA) of your app is running
 
 #### v1.1.0
 
 * Added two new checks:
-    * GenericCacheCheck, which tests that `Rails.cache` is able to read and write.
-    * MongoidReplicaSetCheck, which tests that all of your configured Mongoid replica sets can be reached.
+  * GenericCacheCheck, which tests that `Rails.cache` is able to read and write.
+  * MongoidReplicaSetCheck, which tests that all of your configured Mongoid replica sets can be reached.
 * Modified CacheCheck to accept an optional Memcached host to test. The default behavior of testing Memcached on the local machine remains unchanged.
 
 #### v1.0.0
