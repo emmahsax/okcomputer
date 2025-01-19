@@ -1,3 +1,3 @@
 module OkComputer
-  VERSION = '1.18.7-pre-release'
+  VERSION = '1.18.6'
 end
