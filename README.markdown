@@ -4,7 +4,7 @@
 [![Ruby Versions](https://img.shields.io/badge/Ruby-%3E%3D%202.1-brightgreen.svg)](https://www.ruby-lang.org)
 [![Build Status](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml/badge.svg)](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml)
 
-# OK Computer
+# OkComputer
 
 Inspired by the ease of installing and setting up [fitter-happier] as a Rails
 application's health check, but frustrated by its lack of flexibility, OK
@@ -13,7 +13,7 @@ checks with a set of built-in plugins, as well as a simple interface to add
 your own custom checks.
 
 For more insight into why we built this, check out [our blog post introducing
-OK Computer][blog].
+OkComputer][blog].
 
 [blog]:http://pulse.sportngin.com/news_article/show/267646?referrer_id=543230
 

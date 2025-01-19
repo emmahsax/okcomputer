@@ -21,12 +21,9 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
   s.homepage    = "https://github.com/#{username}/#{s.name}"
   s.summary     = "A simple, extensible health-check monitor"
-  s.description = %Q(
-    Inspired by the simplicity of Fitter Happier, but frustrated by its lack of
-    flexibility, we built OK Computer. Create and register your own custom
-    health checks, or choose from the built-in library of checks to ensure your
-    app is working as intended.
-  )
+  s.description = <<~EOL.strip
+    Inspired by the simplicity of Fitter Happier, but frustrated by its lack of flexibility, we built OkComputer. Create and register your own custom health checks, or choose from the built-in library of checks to ensure your app is working as intended.
+  EOL
   s.required_ruby_version = '>= 2.1'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]

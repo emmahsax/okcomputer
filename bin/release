@@ -61,11 +61,9 @@ else
     echo "Exiting"
     exit 0
   else
-    ## TODO: swap these back... used for testing
-    # git add $CHANGELOG_FILE $VERSION_FILE
-    # git commit --message "Version bump to $VERSION_WITH_V"
-    # git push
-    echo "git commit -am \"Version bump to $VERSION_WITH_V\""
+    git add $CHANGELOG_FILE $VERSION_FILE
+    git commit --message "Version bump to $VERSION_WITH_V"
+    git push
   fi
 fi
 
@@ -89,4 +87,5 @@ else
   rm -f *.gem
 fi
 
-echo "Release complete... happy coding!"
+echo ""
+echo "OkComputer release complete... happy coding!"
