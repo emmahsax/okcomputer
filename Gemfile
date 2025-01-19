@@ -5,12 +5,14 @@ RAILS_VERSION = ENV.fetch("RAILS_VERSION", "7.2.2.1")
 rails_version_float = RAILS_VERSION.to_f
 ruby_version_float = RUBY_VERSION.to_f
 
-if rails_version_float < 7.1
-  gem "concurrent-ruby", "1.3.4"
+if rails_version_float < 5.0
+  gem "concurrent-ruby", "<= 1.1.10"
+elsif rails_version_float < 7.1
+  gem "concurrent-ruby", "~> 1.3.4"
+end
 
-  if ruby_version_float >= 2.5
-    gem "mutex_m", "~> 0.3"
-  end
+if ruby_version_float >= 2.5 && rails_version_float < 7.1
+  gem "mutex_m", "~> 0.3"
 end
 
 if ruby_version_float > 2.6
