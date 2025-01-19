@@ -43,3 +43,5 @@ if ruby_version_float > 2.6
 else
   gem "loofah", "< 2.20"
 end
+
+gemspec
