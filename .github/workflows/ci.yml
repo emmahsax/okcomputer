@@ -48,6 +48,9 @@ jobs:
 
   test-rails-6:
     uses: ./.github/workflows/ci-common.yml
+    with:
+      rails: ${{ matrix.rails }}
+      ruby: ${{ matrix.ruby }}
     strategy:
       fail-fast: false # TODO: remove this once testing is finished
       matrix:
@@ -56,6 +59,9 @@ jobs:
 
   test-rails-7:
     uses: ./.github/workflows/ci-common.yml
+    with:
+      rails: ${{ matrix.rails }}
+      ruby: ${{ matrix.ruby }}
     strategy:
       fail-fast: false # TODO: remove this once testing is finished
       matrix:
@@ -67,6 +73,9 @@ jobs:
 
   test-rails-8:
     uses: ./.github/workflows/ci-common.yml
+    with:
+      rails: ${{ matrix.rails }}
+      ruby: ${{ matrix.ruby }}
     strategy:
       fail-fast: false # TODO: remove this once testing is finished
       matrix:
