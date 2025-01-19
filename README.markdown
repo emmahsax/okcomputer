@@ -1,7 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/okcomputer.svg)](https://badge.fury.io/rb/okcomputer)
 [![Downloads](https://img.shields.io/gem/dt/okcomputer.svg)](https://rubygems.org/gems/okcomputer)
 [![License](https://img.shields.io/github/license/emmahsax/okcomputer.svg)](LICENSE)
-[![Ruby Versions](https://img.shields.io/badge/Ruby-%3E%3D%202.3-brightgreen.svg)](https://www.ruby-lang.org)
+[![Ruby Versions](https://img.shields.io/badge/Ruby-%3E%3D%202.1-brightgreen.svg)](https://www.ruby-lang.org)
 [![Build Status](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml/badge.svg)](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml)
 
 # OK Computer
@@ -37,15 +37,21 @@ If you use [Grape] instead of Rails, check out [okcomputer-grape].
 
 Add this line to your application's Gemfile:
 
-    gem 'okcomputer'
+```ruby
+gem 'okcomputer'
+```
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install okcomputer
+```
+$ gem install okcomputer
+```
 
 ## Usage
 
@@ -89,7 +95,7 @@ you can configure it with:
 
 ```ruby
 # config/initializers/okcomputer.rb
-OkComputer.mount_at = 'health_checks'    # mounts at /health_checks
+OkComputer.mount_at = 'health_checks' # Mounts at /health_checks
 ```
 
 For more control of adding OkComputer to your routes, set `OkComputer.mount_at
@@ -201,7 +207,7 @@ as it will start to artificially bring your request time down.
 
 If you'd like to intentionally count OkComputer requests in your NewRelic analytics, set:
 
-```
+```ruby
 # config/initializers/okcomputer.rb
 OkComputer.analytics_ignore = false
 ```
@@ -210,7 +216,7 @@ OkComputer.analytics_ignore = false
 
 ### Setup
 
-```plaintext
+```
 $ bundle install
 ```
 
@@ -220,7 +226,7 @@ OkComputer tests are written with [RSpec](http://rspec.info/).
 
 To run the full test suite:
 
-```plaintext
+```
 $ rake spec
 ```
 
