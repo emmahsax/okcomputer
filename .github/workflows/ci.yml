@@ -7,44 +7,29 @@ on:
 
 jobs:
   test-rails-4:
-    runs-on: ubuntu-24.04
+    name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
+    uses: ./.github/workflows/ci-common.yml
+    with:
+      rails: ${{ matrix.rails }}
+      ruby: ${{ matrix.ruby }}
+      bundler: '1'
     strategy:
       fail-fast: false # TODO: remove this once testing is finished
       matrix:
         rails: [ '4.0', '4.1', '4.2' ]
         ruby: [ '2.1', '2.2', '2.3', '2.4', '2.5' ]
-    name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
-    env:
-      RAILS_VERSION: ${{ matrix.rails }}
-    steps:
-      - uses: actions/checkout@v4
-      - run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler: '1'
-          bundler-cache: true
-          ruby-version: ${{ matrix.ruby }}
-      - run: bundle exec rake
 
   test-rails-5:
-    runs-on: ubuntu-24.04
+    name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
+    uses: ./.github/workflows/ci-common.yml
+    with:
+      rails: ${{ matrix.rails }}
+      ruby: ${{ matrix.ruby }}
     strategy:
       fail-fast: false # TODO: remove this once testing is finished
       matrix:
         rails: [ '5.0.0', '5.1.0', '5.2.0' ]
         ruby: [ '2.4', '2.5', '2.6', '2.7' ]
-    name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
-    env:
-      RAILS_VERSION: ${{ matrix.rails }}
-    steps:
-      - uses: actions/checkout@v4
-      - run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
-        if: ${{ matrix.rails == '5.0.0' }}
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          ruby-version: ${{ matrix.ruby }}
-      - run: bundle exec rake
 
   test-rails-6:
     name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
