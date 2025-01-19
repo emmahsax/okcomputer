@@ -13,8 +13,8 @@ jobs:
       matrix:
         # ruby: [2.5, 2.6, 2.7]
         # rails: [5.1.0, 5.2.0, 6.0.0, 6.1.0]
-        rails: [ '5.0.0', '5.1.0', '5.2.0', '6.0.0', '6.1.0'] #, '7.0.1', '7.1.0', '7.2.0', '8.0.0' ]
-        ruby: [ '2.4', '2.5', '2.6', '2.7'] #, '3.0', '3.1', '3.2', '3.3', '3.4' ]
+        rails: [ '5.0.0'] #, '5.1.0', '5.2.0', '6.0.0', '6.1.0', '7.0.1', '7.1.0', '7.2.0', '8.0.0' ]
+        ruby: [ '2.4'] #, '2.5', '2.6', '2.7', '3.0', '3.1', '3.2', '3.3', '3.4' ]
         bundler: [ 'default' ]
         exclude:
           # - { rails: '5.0.0', ruby: '2.6', bundler: 'default' }
@@ -48,10 +48,10 @@ jobs:
           - { rails: '8.0.0', ruby: '2.7' }
           - { rails: '8.0.0', ruby: '3.0' }
           - { rails: '8.0.0', ruby: '3.1' }
-        # include:
-        #   - { rails: '5.0.0', ruby: '2.6', bundler: '1' }
-        #   - { ruby: "2.4", rails: "4.2", bundler: "1" }
-        #   - { ruby: "2.5", rails: "4.2", bundler: "1" }
+        include:
+          # - { rails: '5.0.0', ruby: '2.6', bundler: '1' }
+          - { ruby: "2.4", rails: "4.2", bundler: "1" }
+          - { ruby: "2.5", rails: "4.2", bundler: "1" }
 
     name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     env:
@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
-        if: ${{ matrix.rails <= '5.2.0' && matrix.ruby <= '2.6' }}
+        if: ${{ matrix.rails == '5.0.0' && matrix.ruby <= '2.6' }}
       - uses: ruby/setup-ruby@v1
         with:
           bundler: ${{ matrix.bundler }}
