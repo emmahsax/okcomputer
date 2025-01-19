@@ -47,12 +47,12 @@ if [ -f "$VERSION_FILE" ]; then
   sed -i.bak -E "s/^([[:space:]]*VERSION[[:space:]]+=[[:space:]]+).*/\\1'$VERSION_WITHOUT_V'/" $VERSION_FILE
   rm -f $VERSION_FILE.bak
 else
-  echo "$VERSION_FILE not found."
+  echo "$VERSION_FILE not found"
 fi
 
 # Check for changes
 if git diff --quiet; then
-  echo "No changes detected."
+  echo "No changes detected"
 else
   git diff
   read -p "Would you like to commit and push these changes? [y/N] " commit_proceed
