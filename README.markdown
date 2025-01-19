@@ -118,7 +118,7 @@ Log check results by setting `OkComputer.logger`. Note: results will be logged a
 OkComputer.logger = Rails.logger
 ```
 
-```sh
+```
 [okcomputer] mycheck: PASSED mymessage (0s)
 ```
 
