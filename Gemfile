@@ -11,7 +11,7 @@ elsif rails_version_float < 7.1
   gem "concurrent-ruby", "~> 1.3.4"
 end
 
-if ruby_version_float >= 2.5 && rails_version_float < 7.1
+if rails_version_float < 7.1 && ruby_version_float >= 2.5
   gem "mutex_m", "~> 0.3"
 end
 
@@ -36,7 +36,12 @@ if rails_version_float < 7.0
     gem "sqlite3", "~> 1.4"
   end
 
-  gem "rspec-rails", "~> 4.1"
+  if rails_version_float <= 4.2
+    gem "rspec-rails", "~> 3.0"
+  else
+    gem "rspec-rails", "~> 4.1"
+  end
+
   gem "sprockets", "~> 3.0"
 else
   if rails_version_float <= 7.1
