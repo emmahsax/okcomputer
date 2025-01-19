@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
     health checks, or choose from the built-in library of checks to ensure your
     app is working as intended.
   )
-  # s.required_ruby_version = '>= 2.1'
+  s.required_ruby_version = '>= 2.1'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
   s.test_files = Dir["test/**/*"]

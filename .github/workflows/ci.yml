@@ -49,11 +49,6 @@ jobs:
           - { rails: '8.0.0', ruby: '3.0' }
           - { rails: '8.0.0', ruby: '3.1' }
         include:
-          # - { rails: '5.0.0', ruby: '2.6', bundler: '1' }
-          - { ruby: '2.0', rails: '4.0', bundler: '1' }
-          - { ruby: '2.0', rails: '4.1', bundler: '1' }
-          - { ruby: '2.0', rails: '4.2', bundler: '1' }
-
           - { ruby: '2.1', rails: '4.0', bundler: '1' }
           - { ruby: '2.1', rails: '4.1', bundler: '1' }
           - { ruby: '2.1', rails: '4.2', bundler: '1' }
@@ -69,6 +64,9 @@ jobs:
           - { ruby: '2.5', rails: '4.0', bundler: '1' }
           - { ruby: '2.5', rails: '4.1', bundler: '1' }
           - { ruby: '2.5', rails: '4.2', bundler: '1' }
+          - { ruby: '2.6', rails: '4.0', bundler: '1' }
+          - { ruby: '2.6', rails: '4.1', bundler: '1' }
+          - { ruby: '2.6', rails: '4.2', bundler: '1' }
 
     name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     env:
