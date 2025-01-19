@@ -68,10 +68,8 @@ else
 fi
 
 # Tag and push
-## TODO: swap these back... used for testing
-# git tag $VERSION_WITH_V
-# git push --tag
-echo "git tag $VERSION_WITH_V && git push --tag"
+git tag $VERSION_WITH_V
+git push --tag
 
 # Push to RubyGems
 read -p "Would you like to push to RubyGems? [y/N] " rubygems_proceed
@@ -81,9 +79,7 @@ if [[ "$proceed" != "y" && "$proceed" != "yes" ]]; then
   exit 0
 else
   gem build okcomputer.gemspec
-  ## TODO: swap these back... used for testing
-  # gem push *.gem
-  echo "gem push *.gem"
+  gem push *.gem
   rm -f *.gem
 fi
 
