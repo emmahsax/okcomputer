@@ -84,7 +84,7 @@ jobs:
     strategy:
       fail-fast: false # TODO: remove this once testing is finished
       matrix:
-        rails: [ '4.0.0', '4.1.0', '4.2.0' ]
+        rails: [ '4.0', '4.1', '4.2' ]
         ruby: [ '2.1', '2.2', '2.3', '2.4', '2.5' ]
     name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     env:
