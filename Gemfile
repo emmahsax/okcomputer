@@ -126,27 +126,27 @@ gem "sequel", "~> 5.88"
 
 # Gems based on Rails version
 case rails_version_float
-when 0...5.0
-  gem "concurrent-ruby", "<= 1.1.10"
+when 0..5.0
   gem "bigdecimal", "~> 1.3.0"
-  gem "sqlite3", "~> 1.3.6"
-  gem "rspec-rails", "~> 3.0"
+  gem "concurrent-ruby", "<= 1.1.10"
+  gem "rspec-rails", rails_version_float == 5.0 ? "~> 4.1" : "~> 3.0"
   gem "sprockets", "~> 3.0"
-when 5.0...7.0
+  gem "sqlite3", "~> 1.3.6"
+when 5.1..6.1
   gem "concurrent-ruby", "1.3.4"
-  gem "sqlite3", ruby_version_float <= 2.4 ? "~> 1.3.6" : "~> 1.4"
   gem "rspec-rails", "~> 4.1"
   gem "sprockets", "~> 3.0"
-when 7.0...7.1
+  gem "sqlite3", ruby_version_float <= 2.4 ? "~> 1.3.6" : "~> 1.4"
+when 7.0..7.1
   gem "concurrent-ruby", "1.3.4"
-  gem "sqlite3", "~> 1.5"
   gem "rspec-rails", "~> 7.1"
   gem "sprockets", "~> 4.2"
+  gem "sqlite3", "~> 1.5"
 else
   gem "concurrent-ruby", "~> 1.3.4"
-  gem "sqlite3", "~> 2.0"
   gem "rspec-rails", "~> 7.1"
   gem "sprockets", "~> 4.2"
+  gem "sqlite3", "~> 2.0"
 end
 
 # Gems based on Ruby version
