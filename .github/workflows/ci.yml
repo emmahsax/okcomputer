@@ -33,6 +33,7 @@ jobs:
           - { rails: '6.0.0', ruby: '2.4' }
           - { rails: '6.1.0', ruby: '2.4' }
           - { rails: '7.0.1', ruby: '2.4' }
+          - { rails: '7.0.1', ruby: '2.5' }
           - { rails: '7.0.1', ruby: '2.6' }
           - { rails: '7.1.0', ruby: '2.4' }
           - { rails: '7.1.0', ruby: '2.5' }
