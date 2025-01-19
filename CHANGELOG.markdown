@@ -1,4 +1,6 @@
 #### Unreleased
+* Update MIT license copyright holder
+  > emmahsax: https://github.com/emmahsax/okcomputer/pull/10
 * Added `bin/release` script to make it easier to make new version bumps and releases without other tools like soyuz or octopolo
   > emmahsax: https://github.com/emmahsax/okcomputer/pull/8
 * Fix rspec tests and add testing for higher versions of Ruby/Rails
