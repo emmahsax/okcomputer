@@ -1,0 +1,32 @@
+name: CI Common
+
+on:
+  workflow_call:
+    inputs:
+      rails:
+        required: true
+        type: string
+      ruby:
+        required: true
+        type: string
+      bundler:
+        required: false
+        type: string
+        default: 'default'
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    name: Ruby ${{ inputs.ruby }} and Rails ${{ inputs.rails }}
+    env:
+      RAILS_VERSION: ${{ inputs.rails }}
+    steps:
+      - uses: actions/checkout@v4
+      - if: ${{ inputs.rails <= '5.0.0' }}
+        run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler: ${{ inputs.bundler }}
+          bundler-cache: true
+          ruby-version: ${{ inputs.ruby }}
+      - run: bundle exec rake

@@ -20,7 +20,7 @@ module OkComputer
       before do
         allow(Mongoid).to receive(:sessions)
       end
-        
+
       it "uses the default session by default" do
         expect(Mongoid::Sessions).to receive(:with_name).with(:default).and_return(session)
         expect(subject.session).to eq(session)
@@ -68,7 +68,16 @@ module OkComputer
         end
 
         it {is_expected.not_to be_successful_check }
-        it {is_expected.to have_message "Error: 'undefined method `database' for Mongoid:Module'" }
+
+        expected_message = if RUBY_VERSION.to_f >= 3.4
+          "Error: 'undefined method 'database' for module Mongoid'"
+        elsif RUBY_VERSION.to_f >= 3.3
+          "Error: 'undefined method `database' for module Mongoid'"
+        else
+          "Error: 'undefined method `database' for Mongoid:Module"
+        end
+
+        it {is_expected.to have_message expected_message }
       end
     end
 
