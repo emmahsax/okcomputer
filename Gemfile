@@ -24,7 +24,7 @@ gem "rails", "~> #{RAILS_VERSION}"
 gem "sequel", "~> 5.88"
 
 if rails_version_float < 7.0
-  if rails_version_float <= 5.0
+  if rails_version_float <= 5.0 || (rails_version_float <= 5.2 && ruby_version_float <= 2.4)
     gem "rspec-rails", "~> 4.1"
     gem "sprockets", "~> 3.0"
     gem "sqlite3", "~> 1.3.6"
