@@ -137,6 +137,9 @@ OkComputer::Registry.register "resque_backed_up", OkComputer::ResqueBackedUpChec
 
 # This check works on 2.4.0 and above versions of resque-scheduler
 OkComputer::Registry.register "resque_scheduler_down", OkComputer::ResqueSchedulerCheck.new
+
+# If you're using SolidCache instead of Memcached, use this check instead of CacheCheck
+OkComputer::Registry.register "cache", OkComputer::CacheCheckSolidCache.new
 ```
 
 ### Registering Custom Checks
