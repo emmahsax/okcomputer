@@ -1,4 +1,6 @@
 #### Unreleased
+* Add a check for SolidCache
+  > stevenchanin & sidk: https://github.com/emmahsax/okcomputer/pull/15
 * Update MIT license copyright holder
   > emmahsax: https://github.com/emmahsax/okcomputer/pull/10
 * Added `bin/release` script to make it easier to make new version bumps and releases without other tools like soyuz or octopolo
