@@ -1,4 +1,6 @@
-#### Unreleased
+#### v1.19.0
+* Update ActiveRecordMigrationsCheck to use public active_record methods and errors
+  > dgarwood: https://github.com/emmahsax/okcomputer/pull/14
 * Add a check for SolidCache
   > stevenchanin & sidk: https://github.com/emmahsax/okcomputer/pull/15
 * Update MIT license copyright holder

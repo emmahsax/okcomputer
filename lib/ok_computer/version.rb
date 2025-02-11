@@ -1,3 +1,3 @@
 module OkComputer
-  VERSION = '1.18.6'
+  VERSION = '1.19.0'
 end
