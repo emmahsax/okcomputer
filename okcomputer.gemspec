@@ -29,6 +29,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
   s.test_files = Dir["test/**/*"]
 
+  s.add_dependency "benchmark"
+
   s.metadata = {
     "bug_tracker_uri"   => "#{s.homepage}/issues",
     "changelog_uri"     => "#{s.homepage}/blob/main/CHANGELOG.markdown",
