@@ -1,6 +1,6 @@
 #### Unreleased
 * Add rspec for higher versions of Ruby and Rails
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/17 
+  > emmahsax: https://github.com/emmahsax/okcomputer/pull/19
 * Add benchmark gem as a dependency.
   > willnet: https://github.com/emmahsax/okcomputer/pull/16
 
