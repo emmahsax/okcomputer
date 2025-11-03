@@ -26,6 +26,7 @@ OkComputer currently fully supports the following Rails versions:
 
 In addition, the CI tests are passing on, but is not guaranteed to work with, the following Rails versions:
 
+* 8.1
 * 8.0
 * 7.2
 * 7.1
