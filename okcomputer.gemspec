@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency "benchmark"
 
   s.metadata = {
+    "homepage_uri"      => s.homepage,
     "bug_tracker_uri"   => "#{s.homepage}/issues",
     "changelog_uri"     => "#{s.homepage}/blob/main/CHANGELOG.markdown",
     "source_code_uri"   => s.homepage,
