@@ -1,4 +1,4 @@
-#### Unreleased
+#### v1.19.1
 * Add rspec for higher versions of Ruby and Rails
   > emmahsax: https://github.com/emmahsax/okcomputer/pull/19
 * Add benchmark gem as a dependency.
