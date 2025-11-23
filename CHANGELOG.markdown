@@ -3,6 +3,8 @@
   > emmahsax: https://github.com/emmahsax/okcomputer/pull/19
 * Add benchmark gem as a dependency.
   > willnet: https://github.com/emmahsax/okcomputer/pull/16
+* Fix homepage link on rubygems
+  > rmm5t: https://github.com/emmahsax/okcomputer/pull/20
 
 #### v1.19.0
 * Update ActiveRecordMigrationsCheck to use public active_record methods and errors
