@@ -1,4 +1,6 @@
 #### Unreleased
+* ActionMailerCheck: Support :sendmail and :test
+  > awilfox: https://github.com/okcomputer-ruby/okcomputer/pull/21
 * Add SolidQueue checks: `SolidQueueCheck` (liveness + job stats),
   `SolidQueueBackedUpCheck` (per-queue backlog), `SolidQueueFailedJobsCheck`
   (total failed jobs), `SolidQueueFailedJobsRateCheck` (rapid increase in
