@@ -13,10 +13,15 @@ on:
         required: false
         type: string
         default: 'default'
+      continue-on-error:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   test:
     runs-on: ubuntu-24.04
+    continue-on-error: ${{ inputs.continue-on-error }}
     name: Ruby ${{ inputs.ruby }} and Rails ${{ inputs.rails }}
     env:
       RAILS_VERSION: ${{ inputs.rails }}

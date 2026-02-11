@@ -43,10 +43,10 @@ jobs:
   test-rails-7:
     name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     uses: ./.github/workflows/ci-common.yml
-    continue-on-error: ${{ contains(fromJSON('["3.5", "4.0"]'), matrix.ruby) }}
     with:
       rails: ${{ matrix.rails }}
       ruby: ${{ matrix.ruby }}
+      continue-on-error: ${{ contains(fromJSON('["3.5", "4.0"]'), matrix.ruby) }}
     strategy:
       matrix:
         rails: [ '7.0.1', '7.1.0', '7.2.0' ]
@@ -58,10 +58,10 @@ jobs:
   test-rails-8:
     name: Ruby ${{ matrix.ruby }} and Rails ${{ matrix.rails }}
     uses: ./.github/workflows/ci-common.yml
-    continue-on-error: ${{ contains(fromJSON('["3.5", "4.0"]'), matrix.ruby) }}
     with:
       rails: ${{ matrix.rails }}
       ruby: ${{ matrix.ruby }}
+      continue-on-error: ${{ contains(fromJSON('["3.5", "4.0"]'), matrix.ruby) }}
     strategy:
       matrix:
         rails: [ '8.0.0', '8.1.0' ]
