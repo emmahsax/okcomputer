@@ -22,11 +22,13 @@ jobs:
       RAILS_VERSION: ${{ inputs.rails }}
     steps:
       - uses: actions/checkout@v4
-      - if: ${{ inputs.rails < '6.0.0' }}
+      - if: ${{ inputs.rails < '6.0.0' || inputs.ruby == '3.5' }}
         run: sudo apt-get update && sudo apt-get install -y libsqlite3-dev
       - uses: ruby/setup-ruby@v1
         with:
           bundler: ${{ inputs.bundler }}
           bundler-cache: true
           ruby-version: ${{ inputs.ruby }}
+        env:
+          BUNDLE_FORCE_RUBY_PLATFORM: ${{ inputs.ruby == '3.5' && 'true' || 'false' }}
       - run: bundle exec rake
