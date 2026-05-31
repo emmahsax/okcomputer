@@ -1,4 +1,6 @@
 #### Unreleased
+* Use `actions/checkout@v6`
+  > emmahsax: https://github.com/emmahsax/okcomputer/pull/24
 * Replace Ruby 3.5 with Ruby 4.0 in all rspec tests
   > emmahsax: https://github.com/emmahsax/okcomputer/pull/22
 
