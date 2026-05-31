@@ -1,8 +1,8 @@
 [![Gem Version](https://badge.fury.io/rb/okcomputer.svg)](https://badge.fury.io/rb/okcomputer)
 [![Downloads](https://img.shields.io/gem/dt/okcomputer.svg)](https://rubygems.org/gems/okcomputer)
-[![License](https://img.shields.io/github/license/emmahsax/okcomputer.svg)](LICENSE)
+[![License](https://img.shields.io/github/license/okcomputer-ruby/okcomputer.svg)](LICENSE)
 [![Ruby Versions](https://img.shields.io/badge/Ruby-%3E%3D%202.1-brightgreen.svg)](https://www.ruby-lang.org)
-[![Build Status](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml/badge.svg)](https://github.com/emmahsax/okcomputer/actions/workflows/ci.yml)
+[![Build Status](https://github.com/okcomputer-ruby/okcomputer/actions/workflows/ci.yml/badge.svg)](https://github.com/okcomputer-ruby/okcomputer/actions/workflows/ci.yml)
 
 # OkComputer
 
@@ -185,7 +185,7 @@ This check will run and report its status, but will not affect the HTTP status c
 The plain-text output flows through Rails' internationalization framework.
 Adjust the output as necessary by defining `okcomputer.check.passed` and
 `okcomputer.check.failed` keys in your setup. The default values are available
-[in `okcomputer.en.yml`](https://github.com/emmahsax/okcomputer/blob/main/config/locales/okcomputer.en.yml).
+[in `okcomputer.en.yml`](https://github.com/okcomputer-ruby/okcomputer/blob/main/config/locales/okcomputer.en.yml).
 
 ## Running checks in parallel
 
@@ -247,12 +247,12 @@ bundle and run the tests with a specific version of Rails.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new pull request on upstream (this repository)
-6. Update [`CHANGELOG.markdown`](https://github.com/emmahsax/okcomputer/blob/main/CHANGELOG.markdown) under an `Unreleased` tag version (create a new one at the top if needed) with summarized changes and link to the pull request
+6. Update [`CHANGELOG.markdown`](https://github.com/okcomputer-ruby/okcomputer/blob/main/CHANGELOG.markdown) under an `Unreleased` tag version (create a new one at the top if needed) with summarized changes and link to the pull request
 
 ## Releasing
 
 1. Ensure you have push permissions to [RubyGems](https://rubygems.org/gems/okcomputer)
 2. Merge all PRs so that `main` is up to date with the new version
-3. Determine the new version ([`lib/ok_computer/version`](https://github.com/emmahsax/okcomputer/blob/main/lib/ok_computer/version.rb) has the current latest one) by following [semantic versioning](https://semver.org/) guidelines
+3. Determine the new version ([`lib/ok_computer/version`](https://github.com/okcomputer-ruby/okcomputer/blob/main/lib/ok_computer/version.rb) has the current latest one) by following [semantic versioning](https://semver.org/) guidelines
 4. Ensure you're on the `main` branch and you are locally up to date (`git checkout main && git pull`)
 5. Run the release script and pass in the new version (`bin/release vX.X.X`... the `v` at the beginning is optional)
