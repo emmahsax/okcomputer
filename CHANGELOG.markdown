@@ -1,4 +1,8 @@
 #### Unreleased
+
+#### v1.19.2
+* Rename organization from `emmahsax` to `okcomputer-ruby`
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/25
 * Use `actions/checkout@v6`
   > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/24
 * Replace Ruby 3.5 with Ruby 4.0 in all rspec tests
