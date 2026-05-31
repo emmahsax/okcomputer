@@ -1,4 +1,4 @@
-#### Unreleased
+#### v1.19.2
 * Rename organization from `emmahsax` to `okcomputer-ruby`
   > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/25
 * Use `actions/checkout@v6`
