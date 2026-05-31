@@ -13,13 +13,12 @@ authors = {
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  username      = "emmahsax"
   s.name        = "okcomputer"
   s.version     = OkComputer::VERSION
   s.authors     = authors.keys
   s.email       = authors.values
   s.license     = "MIT"
-  s.homepage    = "https://github.com/#{username}/#{s.name}"
+  s.homepage    = "https://github.com/okcomputer-ruby/#{s.name}"
   s.summary     = "A simple, extensible health-check monitor"
   s.description = <<-EOL.strip
     Inspired by the simplicity of Fitter Happier, but frustrated by its lack of flexibility, we built OkComputer. Create and register your own custom health checks, or choose from the built-in library of checks to ensure your app is working as intended.

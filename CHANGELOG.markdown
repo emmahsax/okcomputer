@@ -1,34 +1,36 @@
 #### Unreleased
+* Rename organization from `emmahsax` to `okcomputer-ruby`
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/25
 * Use `actions/checkout@v6`
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/24
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/24
 * Replace Ruby 3.5 with Ruby 4.0 in all rspec tests
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/22
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/22
 
 #### v1.19.1
 * Add rspec for higher versions of Ruby and Rails
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/19
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/19
 * Add benchmark gem as a dependency.
-  > willnet: https://github.com/emmahsax/okcomputer/pull/16
+  > willnet: https://github.com/okcomputer-ruby/okcomputer/pull/16
 * Fix homepage link on rubygems
-  > rmm5t: https://github.com/emmahsax/okcomputer/pull/20
+  > rmm5t: https://github.com/okcomputer-ruby/okcomputer/pull/20
 
 #### v1.19.0
 * Update ActiveRecordMigrationsCheck to use public active_record methods and errors
-  > dgarwood: https://github.com/emmahsax/okcomputer/pull/14
+  > dgarwood: https://github.com/okcomputer-ruby/okcomputer/pull/14
 * Add a check for SolidCache
-  > stevenchanin & sidk: https://github.com/emmahsax/okcomputer/pull/15
+  > stevenchanin & sidk: https://github.com/okcomputer-ruby/okcomputer/pull/15
 * Update MIT license copyright holder
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/10
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/10
 * Added `bin/release` script to make it easier to make new version bumps and releases without other tools like soyuz or octopolo
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/8
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/8
 * Fix rspec tests and add testing for higher versions of Ruby/Rails
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/9
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/9
 
 #### v1.18.6
 * Change default branch from `master` to `main`
-  > emmahsax: https://github.com/emmahsax/okcomputer/pull/7
+  > emmahsax: https://github.com/okcomputer-ruby/okcomputer/pull/7
 * Update gemspec metadata
-  > rmm5t: https://github.com/emmahsax/okcomputer/pull/6
+  > rmm5t: https://github.com/okcomputer-ruby/okcomputer/pull/6
 
 #### v1.18.5
 * Add tests for rails 7
@@ -196,4 +198,4 @@
 #### v1.0.0
 
 * Version bump
-* For prior breaking changes from initial development, see [the Deprecations and Breaking Changes section](https://github.com/emmahsax/okcomputer/blob/3f6708b333ddaf7ecc14d8c2b163335d46343f66/README.markdown#deprecations-and-breaking-changes) of the pre 1.0 README.
+* For prior breaking changes from initial development, see [the Deprecations and Breaking Changes section](https://github.com/okcomputer-ruby/okcomputer/blob/3f6708b333ddaf7ecc14d8c2b163335d46343f66/README.markdown#deprecations-and-breaking-changes) of the pre 1.0 README.
