@@ -199,5 +199,3 @@
 
 * Version bump
 * For prior breaking changes from initial development, see [the Deprecations and Breaking Changes section](https://github.com/okcomputer-ruby/okcomputer/blob/3f6708b333ddaf7ecc14d8c2b163335d46343f66/README.markdown#deprecations-and-breaking-changes) of the pre 1.0 README.
-
-git remote set-url origin git@github.com:okcomputer-ruby/okcomputer.git
