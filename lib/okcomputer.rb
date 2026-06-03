@@ -35,6 +35,7 @@ require "ok_computer/built_in_checks/ruby_version_check"
 require "ok_computer/built_in_checks/sequel_check"
 require "ok_computer/built_in_checks/sidekiq_latency_check"
 require "ok_computer/built_in_checks/solid_queue_check"
+require "ok_computer/built_in_checks/solid_queue_backed_up_check"
 require "ok_computer/built_in_checks/solr_check"
 
 OkComputer::Registry.register "default", OkComputer::DefaultCheck.new
