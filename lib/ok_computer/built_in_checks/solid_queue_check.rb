@@ -5,13 +5,17 @@ module OkComputer
   #
   # See https://github.com/rails/solid_queue
   class SolidQueueCheck < Check
-    # Public: Check whether SolidQueue has live workers and report job stats
+    # Public: Check whether SolidQueue has live workers and a live dispatcher,
+    # and report job stats
     def check
       if live_workers.zero?
         mark_failure
         mark_message "SolidQueue is DOWN. No workers are alive. (#{stats})"
+      elsif live_dispatchers.zero?
+        mark_failure
+        mark_message "SolidQueue dispatcher is DOWN. Scheduled jobs will not run. (#{stats})"
       else
-        mark_message "SolidQueue is up (#{live_workers} worker(s) alive). Job Counts: #{stats}"
+        mark_message "SolidQueue is up (#{live_workers} worker(s), #{live_dispatchers} dispatcher(s) alive). Job Counts: #{stats}"
       end
     rescue => e
       mark_failure
@@ -22,6 +26,12 @@ module OkComputer
     # SolidQueue's configured alive threshold (default: 5 minutes)
     def live_workers
       alive_processes.where(kind: "Worker").count
+    end
+
+    # Public: The number of dispatcher processes whose heartbeat is recent enough
+    # to be considered alive
+    def live_dispatchers
+      alive_processes.where(kind: "Dispatcher").count
     end
 
     # Public: A summary of the current job counts across SolidQueue
