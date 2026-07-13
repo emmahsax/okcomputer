@@ -4,6 +4,7 @@
   (total failed jobs), `SolidQueueFailedJobsRateCheck` (rapid increase in
   failures within a rolling window), and `SolidQueueScheduledBackedUpCheck`
   (scheduled jobs overdue past a grace period)
+  > stevenchanin: https://github.com/okcomputer-ruby/okcomputer/pull/26
 
 #### v1.19.2
 * Rename organization from `emmahsax` to `okcomputer-ruby`
