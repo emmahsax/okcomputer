@@ -141,6 +141,22 @@ OkComputer::Registry.register "resque_scheduler_down", OkComputer::ResqueSchedul
 
 # If you're using SolidCache instead of Memcached, use this check instead of CacheCheck
 OkComputer::Registry.register "cache", OkComputer::CacheCheckSolidCache.new
+
+# If you're using SolidQueue, these checks monitor its health and throughput.
+OkComputer::Registry.register "solid_queue", OkComputer::SolidQueueCheck.new
+
+# Optionally, alert when a specific queue's backlog of ready jobs gets too high:
+OkComputer::Registry.register "solid_queue_backed_up", OkComputer::SolidQueueBackedUpCheck.new("default", 100)
+
+# Optionally, alert when scheduled jobs are overdue — a sign the dispatcher has
+# stalled and is not promoting jobs to ready.
+OkComputer::Registry.register "solid_queue_scheduled_backed_up", OkComputer::SolidQueueScheduledBackedUpCheck.new(0, grace: 2.minutes)
+
+# Optionally, alert when too many jobs have failed in total:
+OkComputer::Registry.register "solid_queue_failed_jobs", OkComputer::SolidQueueFailedJobsCheck.new(25)
+
+# Optionally, alert on a rapid increase in failures (more than 10 failures in 300 sec)
+OkComputer::Registry.register "solid_queue_failed_jobs_rate", OkComputer::SolidQueueFailedJobsRateCheck.new(10, 300)
 ```
 
 ### Registering Custom Checks
