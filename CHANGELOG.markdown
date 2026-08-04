@@ -1,4 +1,6 @@
 #### Unreleased
+* Don't use a shared closure for each spawned thread
+  > awilfox: https://github.com/okcomputer-ruby/okcomputer/pull/27
 * Add SolidQueue checks: `SolidQueueCheck` (liveness + job stats),
   `SolidQueueBackedUpCheck` (per-queue backlog), `SolidQueueFailedJobsCheck`
   (total failed jobs), `SolidQueueFailedJobsRateCheck` (rapid increase in
