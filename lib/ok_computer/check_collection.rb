@@ -113,10 +113,7 @@ module OkComputer
     end
 
     def check_in_parallel
-      threads = checks.map do |check|
-        Thread.new { check.run }
-      end
-      threads.each(&:join)
+      checks.map{ |check| Thread.new(check, &:run) }.each(&:join)
     end
   end
 end
