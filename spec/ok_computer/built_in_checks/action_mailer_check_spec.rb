@@ -54,6 +54,7 @@ module OkComputer
     describe '#check' do
       context "when mailer is accepting connections" do
         before do
+          ActionMailer::Base.delivery_method = :smtp
           ActionMailer::Base.smtp_settings[:address] = 'localhost'
           ActionMailer::Base.smtp_settings[:port] = 25
           expect(TCPSocket).to receive(:new).with('localhost', 25).and_return(double(:socket, :close => true))
@@ -64,6 +65,7 @@ module OkComputer
       end
 
       context "when mailer does not accept connection" do
+        before { ActionMailer::Base.delivery_method = :smtp }
         let(:amcheck) { described_class.new(ActionMailerSubclass) }
         it 'is not successful' do
           expect(amcheck).to receive(:tcp_socket_request).and_raise(Errno::ECONNREFUSED)
@@ -73,6 +75,35 @@ module OkComputer
           expect(amcheck).to receive(:tcp_socket_request).and_raise(Errno::ECONNREFUSED)
           expect(amcheck).to have_message "OkComputer::ActionMailerSubclass at mail.example.com:666 is not accepting connections: 'Connection refused'"
         end
+      end
+
+      context "when mailer is in sendmail mode" do
+        before do
+          ActionMailer::Base.delivery_method = :sendmail
+          ActionMailer::Base.sendmail_settings[:location] = '/usr/sbin/sendmail'
+          expect(File).to receive(:executable?).with('/usr/sbin/sendmail').and_return(true)
+        end
+
+        it { is_expected.to be_successful_check }
+        it { is_expected.to have_message "ActionMailer::Base sendmail executable /usr/sbin/sendmail can be executed" }
+      end
+
+      context "when sendmail is not installed" do
+        before do
+          ActionMailer::Base.delivery_method = :sendmail
+          ActionMailer::Base.sendmail_settings[:location] = '/usr/sbin/sendmail'
+          expect(File).to receive(:executable?).with('/usr/sbin/sendmail').and_return(false)
+        end
+
+        it { is_expected.not_to be_successful_check }
+        it { is_expected.to have_message "ActionMailer::Base sendmail executable /usr/sbin/sendmail is not executable" }
+      end
+
+      context "when mailer is in test mode" do
+        before { ActionMailer::Base.delivery_method = :test }
+
+        it { is_expected.to be_successful_check }
+        it { is_expected.to have_message "ActionMailer::Base is in test mode" }
       end
     end
   end
