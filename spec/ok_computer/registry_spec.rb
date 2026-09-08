@@ -62,6 +62,20 @@ module OkComputer
         Registry.register(check_name, check_object)
       end
 
+      it "keeps a check fetchable when skip_all is true" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        expect(Registry.fetch(check_name)).to eq(skipped_check)
+        expect(Registry.all.checks).not_to include(skipped_check)
+      end
+
+      it "includes a skipped check when it is registered again without skip_all" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        Registry.register(check_name, skipped_check)
+        expect(Registry.all.checks).to include(skipped_check)
+      end
+
       it "throws a collection not found error if a collection with the given name is not found" do
         expect { Registry.register(check_name, check_object, "missing collection") }.to raise_error(Registry::CollectionNotFound)
       end
@@ -71,6 +85,23 @@ module OkComputer
         Registry.register('test_collection', collection)
         Registry.register(check_name, check_object, 'test_collection')
         expect(collection.fetch(check_name)).to eq(check_object)
+      end
+
+      it "can omit a check collection and its checks from all" do
+        collection = CheckCollection.new('Versions')
+        Registry.register('versions', collection, skip_all: true)
+        Registry.register(check_name, check_object, 'versions')
+
+        expect(Registry.fetch('versions')).to eq(collection)
+        expect(Registry.fetch(check_name)).to eq(check_object)
+        expect(Registry.all.checks).not_to include(collection)
+      end
+
+      it "rejects skip_all when registering inside a check collection" do
+        Registry.register('test_collection', collection)
+        expect {
+          Registry.register(check_name, check_object, 'test_collection', skip_all: true)
+        }.to raise_error(ArgumentError, /default collection/)
       end
 
       it "gracefully handles checks defined with a combination of strings and symbols as their name" do

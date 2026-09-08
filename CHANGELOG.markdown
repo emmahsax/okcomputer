@@ -1,4 +1,6 @@
 #### Unreleased
+* Add a `skip_all` registration option for checks and check collections that
+  should remain directly accessible without running at `/okcomputer/all`
 * Don't use a shared closure for each spawned thread
   > awilfox: https://github.com/okcomputer-ruby/okcomputer/pull/27
 * ActionMailerCheck: Support :sendmail and :test

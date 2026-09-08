@@ -182,6 +182,32 @@ end
 OkComputer::Registry.register "check_for_odds", MyCustomCheck.new
 ```
 
+### Grouping Checks
+
+Use a `CheckCollection` to expose several related checks from one endpoint. Register
+the collection with `skip_all: true` when the group should not run as part of the
+default `/okcomputer/all` endpoint:
+
+```ruby
+# config/initializers/okcomputer.rb
+versions = OkComputer::CheckCollection.new("Versions")
+
+OkComputer::Registry.register "versions", versions, skip_all: true
+OkComputer::Registry.register "ruby_version", OkComputer::RubyVersionCheck.new, "versions"
+OkComputer::Registry.register "app_version", OkComputer::AppVersionCheck.new, "versions"
+```
+
+The group is available at `/okcomputer/versions` and `/okcomputer/versions.json`.
+Its checks remain individually available, but neither the group nor its checks run
+at `/okcomputer/all`.
+
+An individual check can also be omitted from `/okcomputer/all` while retaining its
+own endpoint:
+
+```ruby
+OkComputer::Registry.register "ruby_version", OkComputer::RubyVersionCheck.new, skip_all: true
+```
+
 ### Registering Optional Checks
 
 Register an optional check like so:

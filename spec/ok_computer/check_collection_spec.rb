@@ -2,16 +2,12 @@ require "rails_helper"
 
 module OkComputer
   describe CheckCollection do
-    let(:foocheck) { double(:check) }
-    let(:barcheck) { double(:check) }
+    let(:foocheck) { Check.new }
+    let(:barcheck) { Check.new }
     let(:registry) { {foo: foocheck, bar: barcheck} }
 
-    before do
-        allow(foocheck).to receive(:registrant_name=)
-        allow(barcheck).to receive(:registrant_name=)
-    end
-
     subject { CheckCollection.new("foo collection name") }
+    let(:default_collection) { CheckCollection.new("foo collection name", true) }
 
     context ".new" do
       it "sets the display name of the check collection" do
@@ -33,6 +29,15 @@ module OkComputer
             expect(barcheck).to receive(:run)
             subject.run
           end
+
+          it "does not run checks registered with skip_all" do
+            foocheck.skip_all = true
+            default_collection.register(:foo, foocheck)
+            default_collection.register(:bar, barcheck)
+            expect(foocheck).not_to receive(:run)
+            expect(barcheck).to receive(:run)
+            default_collection.run
+          end
         end
       end
     end
@@ -42,6 +47,19 @@ module OkComputer
         subject.register(:foo, foocheck)
         subject.register(:bar, barcheck)
         expect(subject.checks).to eq(registry.values)
+      end
+
+      it "omits checks registered with skip_all" do
+        foocheck.skip_all = true
+        default_collection.register(:foo, foocheck)
+        default_collection.register(:bar, barcheck)
+        expect(default_collection.checks).to eq([barcheck])
+      end
+
+      it "does not omit skipped checks from a named collection" do
+        foocheck.skip_all = true
+        subject.register(:foo, foocheck)
+        expect(subject.checks).to eq([foocheck])
       end
     end
 
@@ -63,6 +81,12 @@ module OkComputer
 
     context "#fetch" do
       it "finds checks in the current collection" do
+        subject.register(:foo, foocheck)
+        expect(subject.fetch(:foo)).to eq(foocheck)
+      end
+
+      it "finds checks registered with skip_all" do
+        foocheck.skip_all = true
         subject.register(:foo, foocheck)
         expect(subject.fetch(:foo)).to eq(foocheck)
       end
@@ -121,7 +145,17 @@ module OkComputer
         subject.register(:bar, barcheck)
         allow(foocheck).to receive(:to_text) { "foo" }
         allow(barcheck).to receive(:to_text) { "bar" }
-        expect(subject.to_text).to eq("foo collection name\n\s\sfoo\n\s\sbar")
+        expect(subject.to_text).to eq("foo collection name\n\s\sbar\n\s\sfoo")
+      end
+
+      it "omits checks registered with skip_all" do
+        foocheck.skip_all = true
+        default_collection.register(:foo, foocheck)
+        default_collection.register(:bar, barcheck)
+        allow(foocheck).to receive(:to_text) { "foo" }
+        allow(barcheck).to receive(:to_text) { "bar" }
+        expect(foocheck).not_to receive(:to_text)
+        expect(default_collection.to_text).to eq("foo collection name\n\s\sbar")
       end
     end
 
@@ -133,6 +167,16 @@ module OkComputer
         allow(barcheck).to receive(:to_json) { {"bar" => "bar result"}.to_json }
         combined_hash = JSON.parse(foocheck.to_json).merge(JSON.parse(barcheck.to_json))
         expect(subject.to_json).to eq(combined_hash.to_json)
+      end
+
+      it "omits checks registered with skip_all" do
+        foocheck.skip_all = true
+        default_collection.register(:foo, foocheck)
+        default_collection.register(:bar, barcheck)
+        allow(foocheck).to receive(:to_json) { {"foo" => "foo result"}.to_json }
+        allow(barcheck).to receive(:to_json) { {"bar" => "bar result"}.to_json }
+        expect(foocheck).not_to receive(:to_json)
+        expect(default_collection.to_json).to eq({"bar" => "bar result"}.to_json)
       end
     end
 
@@ -151,6 +195,15 @@ module OkComputer
         allow(foocheck).to receive(:success?) { true }
         allow(barcheck).to receive(:success?) { false }
         expect(subject).not_to be_success
+      end
+
+      it "ignores failures from checks registered with skip_all" do
+        foocheck.skip_all = true
+        default_collection.register(:foo, foocheck)
+        default_collection.register(:bar, barcheck)
+        allow(barcheck).to receive(:success?) { true }
+        expect(foocheck).not_to receive(:success?)
+        expect(default_collection).to be_success
       end
     end
   end
