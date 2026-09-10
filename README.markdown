@@ -15,22 +15,19 @@ your own custom checks.
 For more insight into why we built this, check out [our blog post introducing
 OkComputer](http://pulse.sportngin.com/news_article/show/267646?referrer_id=543230).
 
-OkComputer currently fully supports the following Rails versions:
-
-* 7.0
-* 6.1
-* 6.0
-* 5.2
-* 5.1
-* 4.2
-
-In addition, the CI tests are passing on, but is not guaranteed to work with, the following Rails versions:
+OkComputer supports the following Rails versions, as tested by the CI build matrix:
 
 * 8.1
 * 8.0
 * 7.2
 * 7.1
+* 7.0
+* 6.1
+* 6.0
+* 5.2
+* 5.1
 * 5.0
+* 4.2
 * 4.1
 * 4.0
 
