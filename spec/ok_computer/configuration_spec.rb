@@ -128,9 +128,7 @@ describe OkComputer do
     end
 
     around(:each) do |example|
-      existing = OkComputer::Registry.instance_variable_get(:@registry)
-      example.run
-      OkComputer::Registry.instance_variable_set(:@registry, existing)
+      with_clean_registry { example.run }
     end
 
     it "marks listed checks as optional" do

@@ -5,6 +5,10 @@ module OkComputer
     let(:check_object) { double(:first_checker, :registrant_name= => nil) }
     let(:collection) { CheckCollection.new('foo collection') }
 
+    around do |example|
+      with_clean_registry { example.run }
+    end
+
     context ".all" do
       it "returns a CheckCollection with all of the registered checks" do
         expect(Registry.all).to be_instance_of(CheckCollection)
@@ -28,12 +32,6 @@ module OkComputer
       let(:check_name) { "foo" }
       let(:second_check_object) { double(:second_checker, :registrant_name= => nil) }
       let(:default_collection) { double }
-
-      after do
-        # Clear out registered checks to avoid leaking test doubles
-        Registry.instance_variable_defined?(:@default_collection) &&
-          Registry.remove_instance_variable(:@default_collection)
-      end
 
       it "assigns the given name to the check" do
         expect(check_object).to receive(:registrant_name=).with(check_name)
