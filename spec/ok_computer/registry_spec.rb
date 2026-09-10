@@ -5,6 +5,10 @@ module OkComputer
     let(:check_object) { double(:first_checker, :registrant_name= => nil) }
     let(:collection) { CheckCollection.new('foo collection') }
 
+    around do |example|
+      with_clean_registry { example.run }
+    end
+
     context ".all" do
       it "returns a CheckCollection with all of the registered checks" do
         expect(Registry.all).to be_instance_of(CheckCollection)
@@ -28,12 +32,6 @@ module OkComputer
       let(:check_name) { "foo" }
       let(:second_check_object) { double(:second_checker, :registrant_name= => nil) }
       let(:default_collection) { double }
-
-      after do
-        # Clear out registered checks to avoid leaking test doubles
-        Registry.instance_variable_defined?(:@default_collection) &&
-          Registry.remove_instance_variable(:@default_collection)
-      end
 
       it "assigns the given name to the check" do
         expect(check_object).to receive(:registrant_name=).with(check_name)
@@ -62,6 +60,37 @@ module OkComputer
         Registry.register(check_name, check_object)
       end
 
+      it "keeps a check fetchable when skip_all is true" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        expect(Registry.fetch(check_name)).to eq(skipped_check)
+        expect(Registry.all.checks).not_to include(skipped_check)
+      end
+
+      it "preserves skip_all when a check is registered again without the option" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        Registry.register(check_name, skipped_check)
+        expect(Registry.all.checks).not_to include(skipped_check)
+      end
+
+      it "clears skip_all when a check is registered again with skip_all false" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        Registry.register(check_name, skipped_check, skip_all: false)
+        expect(Registry.all.checks).to include(skipped_check)
+      end
+
+      it "preserves skip_all when making a check optional" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        OkComputer.make_optional [check_name]
+
+        optional_check = Registry.fetch(check_name)
+        expect(optional_check).to be_a(OkComputer::OptionalCheck)
+        expect(Registry.all.checks).not_to include(optional_check)
+      end
+
       it "throws a collection not found error if a collection with the given name is not found" do
         expect { Registry.register(check_name, check_object, "missing collection") }.to raise_error(Registry::CollectionNotFound)
       end
@@ -71,6 +100,23 @@ module OkComputer
         Registry.register('test_collection', collection)
         Registry.register(check_name, check_object, 'test_collection')
         expect(collection.fetch(check_name)).to eq(check_object)
+      end
+
+      it "can omit a check collection and its checks from all" do
+        collection = CheckCollection.new('Versions')
+        Registry.register('versions', collection, skip_all: true)
+        Registry.register(check_name, check_object, 'versions')
+
+        expect(Registry.fetch('versions')).to eq(collection)
+        expect(Registry.fetch(check_name)).to eq(check_object)
+        expect(Registry.all.checks).not_to include(collection)
+      end
+
+      it "rejects skip_all when registering inside a check collection" do
+        Registry.register('test_collection', collection)
+        expect {
+          Registry.register(check_name, check_object, 'test_collection', skip_all: true)
+        }.to raise_error(ArgumentError, /default collection/)
       end
 
       it "gracefully handles checks defined with a combination of strings and symbols as their name" do

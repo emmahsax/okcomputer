@@ -1,13 +1,16 @@
 module OkComputer
   class CheckCollection
-    attr_accessor :collection, :registrant_name, :display
+    attr_accessor :collection, :registrant_name, :display, :skip_all
 
     # Public: Initialize a new CheckCollection
     #
     # display - the display name for the Check Collection
-    def initialize(display)
+    # exclude_skipped_checks - whether checks marked skip_all should be omitted
+    def initialize(display, exclude_skipped_checks=false)
       self.display = display
       self.collection = {}
+      self.skip_all = false
+      @exclude_skipped_checks = exclude_skipped_checks
     end
 
     # Public: Run the collection's checks
@@ -37,7 +40,7 @@ module OkComputer
     #
     # Returns an Array of the collection's values
     def checks
-      collection.values
+      included_collection.values
     end
 
     def <=>(check)
@@ -51,13 +54,13 @@ module OkComputer
     alias_method :values, :checks
 
     def check_names
-      collection.keys
+      included_collection.keys
     end
 
     alias_method :keys, :check_names
 
     def sub_collections
-      checks.select{ |c| c.is_a?(CheckCollection)}
+      collection.values.select{ |c| c.is_a?(CheckCollection)}
     end
 
     def self_and_sub_collections
@@ -107,6 +110,11 @@ module OkComputer
     end
 
     private
+
+    def included_collection
+      return collection unless @exclude_skipped_checks
+      collection.reject{ |_name, check| check.respond_to?(:skip_all) && check.skip_all }
+    end
 
     def check_in_sequence
       checks.each(&:run)

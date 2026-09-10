@@ -31,7 +31,7 @@ module OkComputer
     #
     # Returns @default_collection
     def self.default_collection
-      @default_collection ||= CheckCollection.new('Default Collection')
+      @default_collection ||= CheckCollection.new('Default Collection', true)
     end
 
     # Public: Register the given check with OkComputer
@@ -39,8 +39,27 @@ module OkComputer
     # check_name - The name of the check to retrieve
     # check_object - Instance of Checker to register
     # collection_name - The name of the check collection the check should be registered to
-    def self.register(check_name, check_object, collection_name=nil)
-      find_collection(collection_name).register(check_name, check_object)
+    # options - Set skip_all to true to omit the check from the default collection's results
+    def self.register(check_name, check_object, collection_name=nil, options={})
+      if collection_name.is_a?(Hash)
+        options = collection_name
+        collection_name = nil
+      end
+
+      if collection_name && options[:skip_all]
+        raise ArgumentError, "skip_all is only supported in the default collection"
+      end
+
+      if !collection_name && options.key?(:skip_all)
+        if check_object.respond_to?(:skip_all=)
+          check_object.skip_all = !!options[:skip_all]
+        elsif options[:skip_all]
+          raise ArgumentError, "skip_all requires a check that supports skip_all="
+        end
+      end
+
+      collection = find_collection(collection_name)
+      collection.register(check_name, check_object)
     end
 
     # Public: Remove the check of the given name being checked

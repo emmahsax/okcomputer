@@ -3,7 +3,7 @@ require "benchmark"
 module OkComputer
   class Check
     # to be set by Registry upon registration
-    attr_accessor :registrant_name
+    attr_accessor :registrant_name, :skip_all
     # nil by default, only set to true if the check deems itself failed
     attr_accessor :failure_occurred
     # nil by default, set by #check to control the output
