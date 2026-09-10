@@ -50,10 +50,12 @@ module OkComputer
         raise ArgumentError, "skip_all is only supported in the default collection"
       end
 
-      if !collection_name && check_object.respond_to?(:skip_all=)
-        check_object.skip_all = !!options[:skip_all]
-      elsif options[:skip_all]
-        raise ArgumentError, "skip_all requires a check that supports skip_all="
+      if !collection_name && options.key?(:skip_all)
+        if check_object.respond_to?(:skip_all=)
+          check_object.skip_all = !!options[:skip_all]
+        elsif options[:skip_all]
+          raise ArgumentError, "skip_all requires a check that supports skip_all="
+        end
       end
 
       collection = find_collection(collection_name)

@@ -69,11 +69,28 @@ module OkComputer
         expect(Registry.all.checks).not_to include(skipped_check)
       end
 
-      it "includes a skipped check when it is registered again without skip_all" do
+      it "preserves skip_all when a check is registered again without the option" do
         skipped_check = Check.new
         Registry.register(check_name, skipped_check, skip_all: true)
         Registry.register(check_name, skipped_check)
+        expect(Registry.all.checks).not_to include(skipped_check)
+      end
+
+      it "clears skip_all when a check is registered again with skip_all false" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        Registry.register(check_name, skipped_check, skip_all: false)
         expect(Registry.all.checks).to include(skipped_check)
+      end
+
+      it "preserves skip_all when making a check optional" do
+        skipped_check = Check.new
+        Registry.register(check_name, skipped_check, skip_all: true)
+        OkComputer.make_optional [check_name]
+
+        optional_check = Registry.fetch(check_name)
+        expect(optional_check).to be_a(OkComputer::OptionalCheck)
+        expect(Registry.all.checks).not_to include(optional_check)
       end
 
       it "throws a collection not found error if a collection with the given name is not found" do
