@@ -57,8 +57,43 @@ $ gem install okcomputer
 
 ## Usage
 
-To perform the default checks (application running and ActiveRecord database
-connection), do nothing other than adding to your application's Gemfile.
+Adding OkComputer to your Gemfile mounts its routes at `/okcomputer` and
+registers a simple application check named `default`. When ActiveRecord is
+loaded, it also registers an ActiveRecord connection check named
+`database`. If Sequel is loaded instead, it registers a Sequel database check.
+
+Test the application check without any additional configuration:
+
+```
+$ curl http://localhost:3000/okcomputer
+default: PASSED Application is running (0.000s)
+```
+
+### Endpoints
+
+| Endpoint | Checks performed |
+| --- | --- |
+| `/okcomputer` | The `default` application check |
+| `/okcomputer/database` | The registered `database` check, when present |
+| `/okcomputer/all` | All checks and collections in the default collection, except those registered with `skip_all: true` |
+| `/okcomputer/:name` | The registered check or collection named `:name` |
+
+A successful check returns HTTP 200. A failed check, or an aggregate containing
+a failed check, returns HTTP 500. Requesting an unregistered check returns HTTP
+404.
+
+Responses are plain text by default. Append `.json` or send an
+`Accept: application/json` header to receive JSON:
+
+```json
+{
+  "default": {
+    "message": "Application is running",
+    "success": true,
+    "time": 0.000123
+  }
+}
+```
 
 ### If Not Using ActiveRecord
 
@@ -234,16 +269,6 @@ By default, OkComputer runs checks in sequence. If you'd like to run them in par
 # config/initializers/okcomputer.rb
 OkComputer.check_in_parallel = true
 ```
-
-## Performing Checks
-
-* Perform a simple up check: http://example.com/okcomputer
-* Perform all installed checks: http://example.com/okcomputer/all
-* Perform a specific installed check: http://example.com/okcomputer/database
-
-Checks are available as plain text (by default) or JSON by appending .json, e.g.:
-* http://example.com/okcomputer.json
-* http://example.com/okcomputer/all.json
 
 ## OkComputer NewRelic Ignore
 
