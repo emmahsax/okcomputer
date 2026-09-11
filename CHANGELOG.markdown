@@ -1,6 +1,9 @@
-#### Unreleased
+#### v1.20.0
+* Improve README
+  > rmm5t: https://github.com/okcomputer-ruby/okcomputer/pull/29
 * Add a `skip_all` registration option for checks and check collections that
   should remain directly accessible without running at `/okcomputer/all`
+  > rmm5t: https://github.com/okcomputer-ruby/okcomputer/pull/28
 * Don't use a shared closure for each spawned thread
   > awilfox: https://github.com/okcomputer-ruby/okcomputer/pull/27
 * ActionMailerCheck: Support :sendmail and :test
